@@ -22,7 +22,7 @@ public class AplicacionBiblioteca {
         remington.agregarRecursoMorales(serie);
 
 
-        //Solo los que pueden ser prestable
+
         if (libro instanceof Prestable) {
             remington.prestarRecursoMorales((Prestable) libro);
         }
@@ -47,7 +47,7 @@ public class AplicacionBiblioteca {
         remington.listarPrestadosMorales();
 
 
-        //Devolver solo los que tienen prestable
+
         if (libro instanceof Prestable) {
             remington.devolverRecursoMorales((Prestable) libro);
         }
