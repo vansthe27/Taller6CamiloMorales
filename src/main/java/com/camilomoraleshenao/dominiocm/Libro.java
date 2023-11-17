@@ -2,6 +2,7 @@ package com.camilomoraleshenao.dominiocm;
 
 public class Libro extends Recurso implements Prestable {
 
+
     public Libro(String nombreCamilo) {
         super(nombreCamilo);
     }

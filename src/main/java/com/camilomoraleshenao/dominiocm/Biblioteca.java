@@ -5,34 +5,38 @@ import java.util.List;
 
 public class Biblioteca {
     private List<Recurso> recursosCamilo = new ArrayList<>();
+    private List<Recurso> recursosPrestadosCamilo = new ArrayList<>();
 
     public void agregarRecursoMorales(Recurso recurso) {
         recursosCamilo.add(recurso);
     }
 
     public boolean prestarRecursoMorales(Prestable prestable) {
-        if (!prestable.prestarMorales()) {
-            return prestable.prestarMorales();
+        if (prestable.prestarMorales()) {
+            recursosPrestadosCamilo.add((Recurso) prestable);
+            return true;
+        } else {
+            System.out.println("El recurso ya está prestado");
+            return false;
         }
-        return false;
     }
 
 
+
     public boolean devolverRecursoMorales(Prestable prestable) {
-        if (prestable.prestarMorales()) {
-            return prestable.devolverMorales();
+        boolean devuelto = prestable.devolverMorales();
+        if (devuelto) {
+            recursosPrestadosCamilo.remove((Recurso) prestable);
         }
-        return false;
+        return devuelto;
     }
 
 
 
     public void listarPrestadosMorales() {
-        System.out.println("Recursos prestados:");
-        for (Recurso recurso : recursosCamilo) {
-            if (recurso.isPrestadoCamilo()) {
-                System.out.println(recurso);
-            }
+        System.out.println("Recursos prestados: ");
+        for (Recurso recurso : recursosPrestadosCamilo) {
+            System.out.println(recurso);
         }
     }
 

@@ -4,7 +4,6 @@ import com.camilomoraleshenao.dominiocm.*;
 
 public class AplicacionBiblioteca {
     public static void main(String[] args) {
-
         Biblioteca remington = new Biblioteca();
 
         Libro libro = new Libro("La guerra del fin del mundo");
@@ -13,8 +12,6 @@ public class AplicacionBiblioteca {
         Dvd dvd = new Dvd("Terminator");
         Serie serie = new Serie("The Last Kingdom");
 
-
-
         remington.agregarRecursoMorales(libro);
         remington.agregarRecursoMorales(revista);
         remington.agregarRecursoMorales(tesis);
@@ -22,48 +19,22 @@ public class AplicacionBiblioteca {
         remington.agregarRecursoMorales(serie);
 
 
-
-        if (libro instanceof Prestable) {
-            remington.prestarRecursoMorales((Prestable) libro);
-        }
-
-        if (revista instanceof Prestable) {
-            remington.prestarRecursoMorales((Prestable) revista);
-        }
-
-        if (tesis instanceof Prestable) {
-            remington.prestarRecursoMorales((Prestable) tesis);
-        }
-
-        if (dvd instanceof Prestable) {
-            remington.prestarRecursoMorales((Prestable) dvd);
-        }
-
-        if (serie instanceof Prestable) {
-            System.out.println("Este recurso no se puede prestar");
+        Prestable[] recursos = {libro, revista,dvd, revista};
+        for (Prestable recurso : recursos) {
+            if (remington.prestarRecursoMorales(recurso)) {
+                System.out.println("Se prestó correctamente: " + recurso);
+            } else {
+                System.out.println("No se pudo prestar: " + recurso);
+            }
         }
 
 
-        remington.listarPrestadosMorales();
-
-
-
-        if (libro instanceof Prestable) {
-            remington.devolverRecursoMorales((Prestable) libro);
+        for (Prestable recurso : recursos) {
+            if (remington.devolverRecursoMorales(recurso)) {
+                System.out.println("Se devolvió correctamente: " + recurso);
+            } else {
+                System.out.println("No se pudo devolver: " + recurso);
+            }
         }
-
-        if (revista instanceof Prestable) {
-            remington.devolverRecursoMorales((Prestable) revista);
-        }
-
-        if (tesis instanceof Prestable) {
-            remington.devolverRecursoMorales((Prestable) tesis);
-        }
-
-        if (dvd instanceof Prestable) {
-            remington.devolverRecursoMorales((Prestable) dvd);
-        }
-
-        remington.listarPrestadosMorales();
     }
 }
